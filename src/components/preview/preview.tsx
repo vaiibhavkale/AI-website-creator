@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { TbReload } from "react-icons/tb";
 import { toast } from "react-toastify";
 import { FaLaptopCode } from "react-icons/fa6";
-import { defaultHTML } from "../../../utils/consts";
+// import { defaultHTML } from "../../../utils/consts";
 
 function Preview({
   html,
