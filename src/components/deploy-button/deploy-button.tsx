@@ -119,7 +119,7 @@ function DeployButton({
               </p>
             </>
           ))}
-        <button
+        {/* <button
           className={classNames(
             "relative cursor-pointer flex-none flex items-center justify-center rounded-md text-xs lg:text-sm font-semibold leading-5 lg:leading-6 py-1.5 px-5 hover:bg-pink-400 text-white shadow-sm dark:shadow-highlight/20",
             {
@@ -130,7 +130,7 @@ function DeployButton({
           onClick={() => setOpen(!open)}
         >
           {path ? "Update Space" : "Deploy to Space"}
-        </button>
+        </button> */}
         <div
           className={classNames(
             "h-screen w-screen bg-black/20 fixed left-0 top-0 z-10",

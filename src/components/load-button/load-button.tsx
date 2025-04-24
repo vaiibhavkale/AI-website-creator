@@ -58,7 +58,7 @@ function LoadButton({
         className="underline hover:text-white cursor-pointer text-xs lg:text-sm text-gray-300"
         onClick={() => setOpen(!open)}
       >
-        Load Space
+        {/* Load Space */}
       </p>
       <div
         className={classNames(
@@ -122,7 +122,7 @@ function LoadButton({
                 className="relative rounded-full bg-black px-5 py-2 text-white font-semibold text-xs hover:bg-black/90 transition-all duration-100 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
                 onClick={loadSpace}
               >
-                Load Space
+                {/* Load Space */}
                 {loading && <Loading />}
               </button>
             </div>
