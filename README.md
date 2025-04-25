@@ -8,7 +8,7 @@ app_port: 5173
 license: mit
 short_description: Generate any application with LookAtClay
 models used:
-  - deepseek-ai/DeepSeek-V3-0324
+  - -ai/DeepSeek-V3-0324
 ---
 
 # Lookatclay

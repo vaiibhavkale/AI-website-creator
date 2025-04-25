@@ -37,6 +37,7 @@ function App() {
     "editor"
   );
   const [prompts, setPrompts] = useState<string[]>([]);
+  const [isNewCode, setIsNewCode] = useState(false); // Track if we're starting fresh code
 
   const fetchMe = async () => {
     const res = await fetch("/api/@me");
@@ -142,6 +143,10 @@ function App() {
     if (htmlStorage) {
       removeHtmlStorage();
       toast.warn("Previous HTML content restored from local storage.");
+      setIsNewCode(false); // We're editing existing code from storage
+    } else {
+      // If we're starting with default HTML, we're in new code mode
+      setIsNewCode(html === defaultHTML);
     }
 
     // Set initial layout based on window size
@@ -172,14 +177,14 @@ function App() {
             return;
           }
           if (
-            window.confirm("You're about to reset the editor. Are you sure?")
+            window.confirm("You're about to start a new project. Are you sure?")
           ) {
             setHtml(defaultHTML);
             setError(false);
             removeHtmlStorage();
-            editorRef.current?.revealLine(
-              editorRef.current?.getModel()?.getLineCount() ?? 0
-            );
+            setIsNewCode(true); // Set to true when starting fresh code
+            toast.success("Started a new project. Editor reset to default.");
+            editorRef.current?.revealLine(1); // Start from the first line
           }
         }}
       >
@@ -231,7 +236,14 @@ function App() {
                 setHtml(newValue);
                 setError(false);
               }}
-              onMount={(editor) => (editorRef.current = editor)}
+              onMount={(editor) => {
+                editorRef.current = editor;
+                // Position cursor at the beginning when editing existing code
+                if (!isNewCode) {
+                  editor.revealLine(1);
+                  editor.setPosition({ lineNumber: 1, column: 1 });
+                }
+              }}
             />
           </div>
           <AskAI
@@ -244,9 +256,15 @@ function App() {
               setPrompts((prev) => [...prev, prompt]);
             }}
             onScrollToBottom={() => {
-              editorRef.current?.revealLine(
-                editorRef.current?.getModel()?.getLineCount() ?? 0
-              );
+              if (isNewCode) {
+                // If starting fresh, scroll to the bottom
+                editorRef.current?.revealLine(
+                  editorRef.current?.getModel()?.getLineCount() ?? 0
+                );
+              } else {
+                // If editing existing code, scroll to the first line
+                editorRef.current?.revealLine(1);
+              }
             }}
           />
         </div>

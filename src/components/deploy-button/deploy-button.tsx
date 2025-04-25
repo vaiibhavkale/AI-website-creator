@@ -90,9 +90,9 @@ function DeployButton({
         {auth &&
           (auth.isLocalUse ? (
             <>
-              <div className="bg-amber-500/10 border border-amber-10 text-amber-500 font-semibold leading-5 lg:leading-6 py-1 px-5 text-xs lg:text-sm rounded-md mr-4 select-none">
+              {/* <div className="bg-amber-500/10 border border-amber-10 text-amber-500 font-semibold leading-5 lg:leading-6 py-1 px-5 text-xs lg:text-sm rounded-md mr-4 select-none">
                 Local Usage
-              </div>
+              </div> */}
             </>
           ) : (
             <>
